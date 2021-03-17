@@ -5,20 +5,20 @@ import Navbar from '../Navbar';
 
 // import s from './styles.module.css';
 
-const MenuHeader = ({ onMenuClickButton }) => {
+const MenuHeader = ({ bgActive, onMenuClickButton }) => {
     const [isActive, setActive] = useState(null);
     const handleClick = () => {
         console.log('####: <MenuHeader />', isActive ? 'close' : 'open');
         setActive(active => !active);
     };
-    const handleMenuClickButton = (page) => {
-        console.log('####: <MenuHeader />', page);
-        onMenuClickButton(page);
-    }
+    // const handleMenuClickButton = (page) => {
+    //     console.log('####: <MenuHeader />', page);
+    //     onMenuClickButton(page);
+    // }
     return (
         <>
-            <Menu isActive={isActive} onClickButon={handleClick} onMenuClickButton={handleMenuClickButton} />
-            <Navbar isActive={isActive} onClickButon={handleClick} />
+            <Menu isActive={isActive} onClickButon={handleClick} />
+            <Navbar isActive={isActive} bgActive={bgActive} onClickButon={handleClick} />
         </>
     );
 };

@@ -1,11 +1,12 @@
-// import React from 'react'; -- deprecated
+import { useHistory } from 'react-router-dom';
 import s from './styles.module.css'
 
 
 const Header = ({ title, descr, onClickButon }) => {
+    const history = useHistory();
     const handleClick = () => {
         console.log('####: <Header />', 'game');
-        onClickButon && onClickButon('game');
+        history.push('/game');
     };
     return (
         <header className={s.root}>

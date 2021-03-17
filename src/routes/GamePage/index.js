@@ -1,16 +1,19 @@
-// import cn from 'classnames';
-
+import { useHistory } from 'react-router-dom';
 import s from './styles.module.css';
 
-const GamePage = ({ onChangePage }) => {
+const GamePage = () => {
+    const history = useHistory();
     const handleClick = () => {
         console.log('####: <GamePage />', 'app');
-        onChangePage && onChangePage('app');
+        history.push('/');
     };
     return (
         <div className={s.root}>
             <div className={s.container}>
-                <button onClick={handleClick} style={{margin: "0 auto"}}>Go Home</button>
+                <h1>This is our game Page</h1>
+                <button onClick={handleClick}>
+                    Go Home
+                </button>
             </div>
         </div>
     );
