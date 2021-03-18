@@ -1,19 +1,17 @@
-import { useState } from 'react';
 import cn from 'classnames';
 
 import cardBackSide from './assets/card-back-side.jpg';
 
 import s from './styles.module.css';
 
-const KapitoshkaCard = ({ id, name, img, type, values }) => {
-    const [isActive, setActive] = useState(false);
+const PokemonCard = ({ id, name, img, type, values, isActive, onCardClick }) => {
     const handleClick = () => {
         console.log(`name: ${name}`);
-        setActive(active => !active);
+        onCardClick(id);
     };
     return (
         <div className={s.root} onClick={handleClick}>
-            <div className={cn(s.pokemonCard, {[s.active]: isActive})}>
+            <div className={cn(s.pokemonCard, {[s.active]: isActive, [s.deactive]: isActive === false})}>
                 <div className={s.cardFront}>
                     <div className={`${s.wrap} ${s.front}`}>
                         <div className={`${s.pokemon} ${s[type]}`}>
@@ -49,4 +47,4 @@ const KapitoshkaCard = ({ id, name, img, type, values }) => {
         </div>
     );};
 
-export default KapitoshkaCard;
+export default PokemonCard;

@@ -1,4 +1,4 @@
-import { useRouteMatch, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 // import { useState } from 'react';
 import MenuHeader from './components/MenuHeader';
 import Footer from './components/Footer';
@@ -11,10 +11,9 @@ import cn from 'classnames';
 import s from './styles.module.css';
 
 const App = () => {
-  const match1 = useRouteMatch('/');
-  const match2 = useRouteMatch('/home');
-  const isExact = match1?.isExact === true || match2?.isExact === true;
-  console.log('####: match ', match1, match2, isExact);
+  const location = useLocation();
+  const isExact = location.pathname === "/" || location.pathname === "/home";
+
   return (
     <Switch>
       <Route path="/404" render={() => <h1>404 Not Found</h1>} />
@@ -33,9 +32,6 @@ const App = () => {
                 <Route path="/game" component={GamePage}/>
                 <Route path="/about" component={AboutPage}/>
                 <Route path="/contact" component={ContactPage}/>
-                <Route path="/about" render={() => (
-                    <h1>This is page About</h1>
-                )} />
                 <Route render={() => <Redirect to="/404"/>}/>                
               </Switch>
             </div>

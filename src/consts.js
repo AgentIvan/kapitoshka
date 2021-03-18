@@ -1,4 +1,4 @@
-const KAPITOSHKAS = [
+const POKEMONS = [
   {
     "abilities": [
       "keen-eye",
@@ -133,4 +133,4 @@ const KAPITOSHKAS = [
   }
 ];
 
-export default KAPITOSHKAS;
+export default POKEMONS;
