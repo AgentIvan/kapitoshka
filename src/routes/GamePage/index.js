@@ -11,9 +11,9 @@ const GamePage = () => {
         history.push('/');
     };
     const [pokemons, setPokemons] = useState(POKEMONS);
-    const [activeCards, setActiveCards] = useState([]);
+    // const [activeCards, setActiveCards] = useState([]);
     const handleCardClick = (id) => {
-        setActiveCards(activeCards => ([...activeCards, id]))
+        // setActiveCards(activeCards => ([...activeCards, id]))
         setPokemons(pokemons.map(el => ({...el, ...(el.id === id && {active: true})})))
     };
     return (
