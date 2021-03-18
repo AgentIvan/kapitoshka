@@ -12,7 +12,7 @@ import s from './styles.module.css';
 
 const App = () => {
   const location = useLocation();
-  const isExact = location.pathname === "/" || location.pathname === "/home";
+  const isHomePage = location.pathname === "/" || location.pathname === "/home";
 
   return (
     <Switch>
@@ -20,11 +20,11 @@ const App = () => {
       <Route>
         <>
           <MenuHeader
-            bgActive={!isExact}
+            bgActive={!isHomePage}
             onMenuClickButton={() => {console.log('MenuHeader')}}
           />
             <div className={cn(s.wrap, {
-              [s.isHomePage]: isExact
+              [s.isHomePage]: isHomePage
             })}>
               <Switch>
                 <Route exact path="/" component={HomePage}/>

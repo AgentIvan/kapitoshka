@@ -11,10 +11,15 @@ const GamePage = () => {
         history.push('/');
     };
     const [pokemons, setPokemons] = useState(POKEMONS);
+    console.log("####: actived: ",pokemons.filter(el => el.active).map(el => el.id));
     // const [activeCards, setActiveCards] = useState([]);
     const handleCardClick = (id) => {
         // setActiveCards(activeCards => ([...activeCards, id]))
-        setPokemons(pokemons.map(el => ({...el, ...(el.id === id && {active: true})})))
+        // setPokemons(pokemons => pokemons.map(el => el.id === id ? {...el, active: true} : el));
+        setPokemons(pokemons => pokemons.map(el => {
+            if (el.id === id) el["active"] = true;
+            return el;
+        }));
     };
     return (
         <div className={s.root}>
