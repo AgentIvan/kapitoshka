@@ -10,16 +10,18 @@ const GamePage = () => {
         console.log('####: <GamePage />', 'app');
         history.push('/');
     };
-    const [activeCards, setActiveCards] = useState({list: []});
+    const [pokemons, setPokemons] = useState(POKEMONS);
+    const [activeCards, setActiveCards] = useState([]);
     const handleCardClick = (id) => {
-        setActiveCards(activeCards => ({ list: [...activeCards.list, id] }) );
+        setActiveCards(activeCards => ([...activeCards, id]))
+        setPokemons(pokemons.map(el => ({...el, ...(el.id === id && {active: true})})))
     };
     return (
         <div className={s.root}>
             <div className={s.container}>
                 <button onClick={handleClick}>Go Home</button>
                 <div className="flex">
-                    {POKEMONS.map(item => 
+                    {pokemons.map(item => 
                     <PokemonCard
                         key={item.id}
                         id={item.id}
@@ -27,7 +29,8 @@ const GamePage = () => {
                         img={item.img}
                         type={item.type}
                         values={item.values}
-                        isActive={activeCards.list.includes(item.id)}
+                        isActive={item.active}
+                        // isActive={activeCards.list.includes(item.id)}
                         onCardClick={handleCardClick}
                     />
                     )}
