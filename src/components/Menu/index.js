@@ -22,13 +22,13 @@ const MENU = [
     },
 ];
 
-const Menu = ({ isActive, onClickButon }) => {
+const Menu = ({ isOpen, onMenuOpenClose }) => {
     const handleClick = (event) => {
         console.log('####: <Menu />');
-        onClickButon && onClickButon();
+        onMenuOpenClose && onMenuOpenClose();
     };
     return (
-        <div className={cn(s.menuContainer, {[s.active]: isActive, [s.deactive]: isActive === false})}>
+        <div className={cn(s.menuContainer, {[s.active]: isOpen, [s.deactive]: isOpen === false})}>
             <div className={s.overlay} />
             <div className={s.menuItems} onClick={handleClick}>
                 <ul>

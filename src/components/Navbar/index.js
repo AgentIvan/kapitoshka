@@ -2,10 +2,10 @@ import cn from 'classnames';
 
 import s from './styles.module.css';
 
-const Navbar = ({ isActive, bgActive = false, onClickButon }) => {
+const Navbar = ({ isOpen, bgActive = false, onMenuOpenClose }) => {
     const handleClick = () => {
         console.log('####: <Navbar />');
-        onClickButon && onClickButon();
+        onMenuOpenClose && onMenuOpenClose();
     };
     return (
         <nav className={cn(s.root, {[s.bgActive]: bgActive})}>
@@ -13,7 +13,7 @@ const Navbar = ({ isActive, bgActive = false, onClickButon }) => {
                 <p className={s.brand}>
                 LOGO
                 </p>
-                <div onClick={handleClick} className={cn(s.menuButton, {[s.active]: isActive})}>
+                <div onClick={handleClick} className={cn(s.menuButton, {[s.active]: isOpen})}>
                 <span />
                 </div>
             </div>
