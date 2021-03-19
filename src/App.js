@@ -1,24 +1,45 @@
-import { useState } from 'react';
-import HomePage from './routes/Home';
-import GamePage from './routes/Game';
-// import cn from 'classnames';
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
+// import { useState } from 'react';
+import MenuHeader from './components/MenuHeader';
+import Footer from './components/Footer';
+import HomePage from './routes/HomePage';
+import GamePage from './routes/GamePage';
+import AboutPage from './routes/AboutPage';
+import ContactPage from './routes/ContactPage';
 
-// import s from './styles.module.css';
+import cn from 'classnames';
+import s from './styles.module.css';
 
 const App = () => {
-    const [page, setPage] = useState('app');
-    const handleChangePage = (page) => {
-      console.log('####: <Main />', page);
-        setPage(page);
-    };
-    switch (page) {
-      case 'app':
-        return <HomePage onChangePage={handleChangePage}/>;
-      case 'game':
-        return <GamePage onChangePage={handleChangePage}/>
-      default:
-        return <HomePage onChangePage={handleChangePage}/>;
-    }
-  };
+  const location = useLocation();
+  const isHomePage = location.pathname === "/" || location.pathname === "/home";
+
+  return (
+    <Switch>
+      <Route path="/404" render={() => <h1>404 Not Found</h1>} />
+      <Route>
+        <>
+          <MenuHeader
+            bgActive={!isHomePage}
+            onMenuClickButton={() => {console.log('MenuHeader')}}
+          />
+            <div className={cn(s.wrap, {
+              [s.isHomePage]: isHomePage
+            })}>
+              <Switch>
+                <Route exact path="/" component={HomePage}/>
+                <Route path="/home" component={HomePage}/>
+                <Route path="/game" component={GamePage}/>
+                <Route path="/about" component={AboutPage}/>
+                <Route path="/contact" component={ContactPage}/>
+                <Route render={() => <Redirect to="/404"/>}/>                
+              </Switch>
+            </div>
+          <Footer />
+        </>
+      </Route>
+    </Switch>
+  );
+};
 
 export default App;

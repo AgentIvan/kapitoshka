@@ -46,6 +46,8 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  opacity: 0;
+  z-index: -1;
 }
 
 .menuContainer::before,
@@ -58,11 +60,11 @@
 }
 
 .menuContainer::before {
-  background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Stars.svg?sanitize=true);
+  background: url("../../assets/Stars.svg");
 }
 
 .menuContainer::after {
-  background: url(https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/Trees.svg?sanitize=true) bottom repeat-x;
+  background: url("../../assets/Trees.svg") bottom repeat-x;
 }
 
 .menuContainer.deactive {
