@@ -7,14 +7,17 @@ const GamePage = ({ database }) => {
     const history = useHistory();
     
   const [pokemons, setPokemons] = useState({});
+  const refreshData = (database) => {
+    database.ref('pokemons').once('value', (snapshot) => {
+        const values = snapshot.val();
+        console.log('####: App useEffect', values);
+        setPokemons(values);
+    });
+  }
 
   useEffect(() => {
-    database.ref('pokemons').once('value', (snapshot) => {
-      const values = snapshot.val();
-      console.log('####: App useEffect', values);
-      setPokemons(values);
-    });
-  },[]);
+    refreshData(database);
+  },[database]);
 
   const handleWriteDB = (keyId, active) => {
     database.ref('pokemons/' + keyId).update({active: !active}, (error) => {
