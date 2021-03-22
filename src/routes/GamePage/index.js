@@ -4,16 +4,16 @@ import s from './styles.module.css';
 import PokemonCard from '../../components/PokemonCard';
 
 const GamePage = ({ database }) => {
-    const history = useHistory();
+  const history = useHistory();
     
   const [pokemons, setPokemons] = useState({});
   const refreshData = (database) => {
     database.ref('pokemons').once('value', (snapshot) => {
-        const values = snapshot.val();
-        console.log('####: App useEffect', values);
-        setPokemons(values);
+      const values = snapshot.val();
+      console.log('####: App useEffect', values);
+      setPokemons(values);
     });
-  }
+  };
 
   useEffect(() => {
     refreshData(database);
@@ -70,37 +70,37 @@ const GamePage = ({ database }) => {
       }
     });
   }
-    const handleClick = () => {
-        console.log('####: <GamePage />', 'app');
-        history.push('/');
-    };
-    const entries = pokemons && Object.entries(pokemons);
+  const handleClick = () => {
+    console.log('####: <GamePage />', 'app');
+    history.push('/');
+  };
+  const entries = pokemons && Object.entries(pokemons);
 
-    return (
-        <div className={s.root}>
-            <div className={s.container}>
-                <div className={s.buttons}>
-                    <button className={s.button} onClick={handleAddNewPokemon}>Add New</button>
-                    <button className={s.button} onClick={handleClick}>Go Home</button>
-                </div>
-                <div className={s.flex}>
-                    {pokemons && Object.entries(pokemons).map(([key, item]) => 
-                        item.id && <PokemonCard
-                            key={key}
-                            keyId={key}
-                            id={item.id}
-                            name={item.name}
-                            img={item.img}
-                            type={item.type}
-                            values={item.values}
-                            isActive={item.active}
-                            writeDB={handleWriteDB}
-                        />                    
-                    )}
-                </div>
-            </div>
+  return (
+    <div className={s.root}>
+      <div className={s.container}>
+        <div className={s.buttons}>
+          <button className={s.button} onClick={handleAddNewPokemon}>Add New</button>
+          <button className={s.button} onClick={handleClick}>Go Home</button>
         </div>
-    );
+        <div className={s.flex}>
+          {pokemons && Object.entries(pokemons).map(([key, item]) => 
+            item.id && <PokemonCard
+              key={key}
+              keyId={key}
+              id={item.id}
+              name={item.name}
+              img={item.img}
+              type={item.type}
+              values={item.values}
+              isActive={item.active}
+              writeDB={handleWriteDB}
+            />                    
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default GamePage;

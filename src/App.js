@@ -1,3 +1,4 @@
+// import React from 'react';
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import MenuHeader from './components/MenuHeader';
 import Footer from './components/Footer';
