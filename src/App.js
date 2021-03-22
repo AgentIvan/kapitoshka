@@ -2,10 +2,10 @@
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import MenuHeader from './components/MenuHeader';
 import Footer from './components/Footer';
-import HomePage from './routes/HomePage';
-import GamePage from './routes/GamePage';
-import AboutPage from './routes/AboutPage';
-import ContactPage from './routes/ContactPage';
+import HomePage from './routes/Home';
+import GamePage from './routes/Game';
+import AboutPage from './routes/About';
+import ContactPage from './routes/Contact';
 
 import cn from 'classnames';
 import s from './styles.module.css';
