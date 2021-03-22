@@ -4,10 +4,10 @@ import cardBackSide from './assets/card-back-side.jpg';
 
 import s from './styles.module.css';
 
-const PokemonCard = ({ id, name, img, type, values, isActive, onCardClick }) => {
+const PokemonCard = ({ keyId, id, name, img, type, values, isActive, writeDB }) => {
     const handleClick = () => {
-        console.log(`name: ${name}`);
-        onCardClick(id);
+        console.log(`name: ${name}, ${id} ${keyId}`);
+        writeDB && writeDB(keyId, isActive);
     };
     return (
         <div className={s.root} onClick={handleClick}>
