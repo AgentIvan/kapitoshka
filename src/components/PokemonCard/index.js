@@ -4,14 +4,14 @@ import cardBackSide from './assets/card-back-side.jpg';
 
 import s from './styles.module.css';
 
-const PokemonCard = ({ keyId, id, name, img, type, values, isActive, writeDB }) => {
+const PokemonCard = ({ keyId, id, name, img, type, values, isActive, writeDB, minimize, className }) => {
   const handleClick = () => {
     console.log(`name: ${name}, ${id} ${keyId}`);
     writeDB && writeDB(keyId, isActive);
   };
   return (
     <div className={s.root} onClick={handleClick}>
-      <div className={cn(s.pokemonCard, {[s.active]: isActive, [s.deactive]: isActive === false})}>
+      <div className={cn(className, s.pokemonCard, {[s.active]: isActive, [s.deactive]: isActive === false})}>
         <div className={s.cardFront}>
           <div className={`${s.wrap} ${s.front}`}>
             <div className={`${s.pokemon} ${s[type]}`}>
@@ -24,21 +24,23 @@ const PokemonCard = ({ keyId, id, name, img, type, values, isActive, writeDB }) 
               <div className={s.imgContainer}>
                 <img src={img} alt={name} />
               </div>
-              <div className={s.info}>
-                <span className={s.number}>#{id}</span>
-                <h3 className={s.name}>
-                  {name}
-                </h3>
-                <small className={s[type]}>
-                  Type: <span>{type}</span>
-                </small>
-              </div>
+              { !minimize && (
+                <div className={s.info}>
+                  <span className={s.number}>#{id}</span>
+                  <h3 className={s.name}>
+                    {name}
+                  </h3>
+                  <small className={s[type]}>
+                    Type: <span>{type}</span>
+                  </small>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         <div className={s.cardBack}>
-          <div className={`${s.wrap} ${s.back}`}>
+          <div className={cn(s.wrap, s.back)}>
             <img src={cardBackSide} alt="Сard Backed" />
           </div>
         </div>

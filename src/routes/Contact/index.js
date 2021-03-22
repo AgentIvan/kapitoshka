@@ -4,7 +4,7 @@ import s from './styles.module.css';
 const ContactPage = () => {
   const history = useHistory();
   const handleClick = () => {
-    console.log('####: <GamePage />', 'app');
+    console.log('####: <ContactPage />', 'app');
     history.push('/');
   };
   return (
