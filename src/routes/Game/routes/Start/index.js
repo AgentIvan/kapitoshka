@@ -68,7 +68,7 @@ const StartPage = () => {
               img={img}
               type={type}
               values={values}
-              isActive={true}
+              isActive
               isSelected={selected}
               onClickCard={() => handleChangeSelected(key)}
               minimize={minimize}
