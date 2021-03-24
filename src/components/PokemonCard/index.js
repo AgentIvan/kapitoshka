@@ -2,10 +2,10 @@ import cn from 'classnames';
 
 import s from './styles.module.css';
 
-const PokemonCard = ({ keyId, id, name, img, type, values, isActive, isSelected, onClick, minimize, className }) => {
+const PokemonCard = ({ keyId, id, name, img, type, values, isActive, isSelected, onClickCard, minimize, className }) => {
   const handleClick = () => {
     console.log(`name: ${name}, ${id} ${keyId}`);
-    onClick && onClick();
+    onClickCard && onClickCard();
   };
   
   return (

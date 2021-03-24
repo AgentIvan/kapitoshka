@@ -14,13 +14,13 @@ const BoardPage = () => {
             .map(({id, name, img, type, values}) => (
               <PokemonCard
                 key={id}
-                isActive={true}
                 id={id}
                 name={name}
                 img={img}
                 type={type}
                 values={values}
-                minimize = {true}
+                minimize
+                isActive
                 className = {s.card}
               />
             ))

@@ -9,14 +9,16 @@ import s from './styles.module.css';
 
 const StartPage = () => {
   const firebase = useContext(FireBaseContext);
-  const { pokemons: selectedPokemons, onSelectedPokemons } = useContext(PokemonContext);
+  const { pokemons: selectedPokemons, onSelectedPokemons, resetSelectedPokemons } = useContext(PokemonContext);
   const [pokemons, setPokemons] = useState({});
 
   // console.log( pokemons);
   
   useEffect(() => {
     firebase.getPokemonsSoket((pokemons) => {
+      console.log('####: <GamePage />', 'getPokemonsSoket');
       setPokemons(pokemons);
+      resetSelectedPokemons();
     });
     return () => firebase.offPokemonsSoket();
   },[]);
@@ -28,22 +30,21 @@ const StartPage = () => {
     history.push('/');
   };
   
-  const handleClickStartGame = () => {
+  const handleStartGameClick = () => {
     console.log('####: <GamePage />', 'GOTO game/board');
       history.push("game/board");
   };
 
-  const onClickCardSelect = (id) => {
-    const curPokemon = {...pokemons[id]}
-
-    if (Object.keys(selectedPokemons).length < 5 || pokemons[id].selected) {
-      onSelectedPokemons(id, curPokemon)
+  const handleChangeSelected = keyId => {
+    if (Object.keys(selectedPokemons).length < 5 || pokemons[keyId].selected) {
+      const curPokemon = {...pokemons[keyId]}
+      onSelectedPokemons(keyId, curPokemon)
 
       setPokemons(prev => ({
         ...prev,
-        [id]: {
-          ...prev[id],
-          selected: !prev[id].selected
+        [keyId]: {
+          ...prev[keyId],
+          selected: !prev[keyId].selected
         }
       }));
     }
@@ -53,7 +54,9 @@ const StartPage = () => {
     <div className={s.root}>
       <div className={s.container}>
         <div className={s.buttons}>
-          <button className={s.button} onClick={handleClickStartGame} disabled={Object.keys(selectedPokemons).length < 5}>Go to board</button>
+          <button className={s.button} onClick={handleStartGameClick} disabled={Object.keys(selectedPokemons).length < 5}>
+            Go to board
+          </button>
           <button className={s.button} onClick={handleClickGoHome}>Go Home</button>
         </div>
         <div className={s.flex}>
@@ -67,7 +70,7 @@ const StartPage = () => {
               values={values}
               isActive={true}
               isSelected={selected}
-              onClick={() => onClickCardSelect(key)}
+              onClickCard={() => handleChangeSelected(key)}
               minimize={minimize}
               className={s.card}
             />                    

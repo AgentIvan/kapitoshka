@@ -14,7 +14,7 @@ import Firebase from './service/firebase';
 
 const App = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === "/" || location.pathname === "/home";
+  const noPadding = ["/", "/home", "/game/board"].includes(location.pathname);
 
   return (
     <FireBaseContext.Provider value={new Firebase()}>
@@ -23,11 +23,11 @@ const App = () => {
         <Route>
           <>
             <MenuHeader
-              bgActive={!isHomePage}
+              bgActive={!noPadding}
               onMenuClickButton={() => {console.log('MenuHeader')}}
             />
               <div className={cn(s.wrap, {
-                [s.isHomePage]: isHomePage
+                [s.noPadding]: noPadding
               })}>
                 <Switch>
                   <Route exact path="/" component={HomePage} />

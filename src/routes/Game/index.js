@@ -22,11 +22,17 @@ const GamePage = () => {
     });
   };
 
+  const handleResetSelected = () => {
+    console.log('####: <GamePage />', 'resetSelectedPokemons');
+    setSelectedPokemons({});
+  };
+
   const match = useRouteMatch();
   return (
     <PokemonContext.Provider value={{
       pokemons: selectedPokemons,
-      onSelectedPokemons: handleSelectedPokemons
+      onSelectedPokemons: handleSelectedPokemons,
+      resetSelectedPokemons: handleResetSelected
     }}>
       <Switch>
           <Route path={`${match.path}/`} exact component={StartPage} />
