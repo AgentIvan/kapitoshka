@@ -92,3 +92,9 @@ button:disabled:hover {
     border: 1px solid transparent;
     color: #fafafa;
 }
+
+.flex {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+}
