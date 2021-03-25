@@ -8,16 +8,16 @@ import { PokemonContext } from "../../context/pokemonContext";
 const GamePage = () => {
   const [selectedPokemons, setSelectedPokemons] = useState({});
 
-  const handleSelectedPokemons = (keyId, pokemon) => {
+  const handleSelectedPokemons = (key, pokemon) => {
     setSelectedPokemons(prevState => {
-      if(prevState[keyId]) {
+      if(prevState[key]) {
         const copyState = {...prevState};
-        delete copyState[keyId];
+        delete copyState[key];
         return copyState;
       }
       return {
         ...prevState,
-        [keyId]: pokemon
+        [key]: pokemon
       };
     });
   };

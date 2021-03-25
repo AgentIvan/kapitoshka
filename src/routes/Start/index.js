@@ -19,17 +19,16 @@ const GamePage = ({ database }) => {
     refreshData(database);
   },[database]);
 
-  const handleWriteDB = (keyId, active) => {
-    database.ref('pokemons/' + keyId).update({active: !active}, (error) => {
+  const handleWriteDB = (key, active) => {
+    database.ref('pokemons/' + key).update({active: !active}, (error) => {
       if (error) {
         console.log('####: App error', error);
       } else {
         console.log('####: App handleWriteDB Data saved successfully!');
         setPokemons(prevState => {
           const result = Object.entries(prevState).reduce((acc, item) => {
-            const key = item[0];
             const pokemon = {...item[1]};
-              if (keyId === key)
+              if (item[0] === key)
                   pokemon.active = !pokemon.active;
       
               acc[item[0]] = pokemon;
@@ -87,7 +86,6 @@ const GamePage = ({ database }) => {
           {pokemons && Object.entries(pokemons).map(([key, item]) => 
             item.id && <PokemonCard
               key={key}
-              keyId={key}
               id={item.id}
               name={item.name}
               img={item.img}

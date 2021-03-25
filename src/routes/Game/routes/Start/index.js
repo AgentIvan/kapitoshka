@@ -35,16 +35,16 @@ const StartPage = () => {
       history.push("game/board");
   };
 
-  const handleChangeSelected = keyId => {
-    if (Object.keys(selectedPokemons).length < 5 || pokemons[keyId].selected) {
-      const curPokemon = {...pokemons[keyId]}
-      onSelectedPokemons(keyId, curPokemon)
+  const handleChangeSelected = key => {
+    if (Object.keys(selectedPokemons).length < 5 || pokemons[key].selected) {
+      const curPokemon = {...pokemons[key]}
+      onSelectedPokemons(key, curPokemon)
 
       setPokemons(prev => ({
         ...prev,
-        [keyId]: {
-          ...prev[keyId],
-          selected: !prev[keyId].selected
+        [key]: {
+          ...prev[key],
+          selected: !prev[key].selected
         }
       }));
     }
