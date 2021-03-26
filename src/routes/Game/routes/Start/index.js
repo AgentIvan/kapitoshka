@@ -16,7 +16,7 @@ const StartPage = () => {
   
   useEffect(() => {
     firebase.getPokemonsSoket((pokemons) => {
-      console.log('####: <GamePage />', 'getPokemonsSoket');
+      console.log('####: <StartPage />', 'getPokemonsSoket');
       setPokemons(pokemons);
       clearPokemonContext();
     });
