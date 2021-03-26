@@ -21,7 +21,7 @@ const FinishPage = () => {
     pokemon.id === selectedPokemon?.id && setSelectedPokemon(null);
   };
 
-  if (match.isExact || !player1 || !player2) {
+  if (match.isExact || !player1 || !player2?.length) {
     history.replace('/game');
   }
 
@@ -42,11 +42,14 @@ const FinishPage = () => {
         {draw && <h1>Draw</h1>}
         <h2>Your Cards</h2>
       </div>
-      <div className={s.playerOne}>
+      <div className={s.player}>
         {
           Object.values(player1).map((item) => (
-            <PokemonCard
+            <div
               key={item.id}
+              className={s.cardBoard}
+            >
+            <PokemonCard
               name={item.name}
               img={item.img}
               id={item.id}
@@ -55,6 +58,7 @@ const FinishPage = () => {
               minimize
               isActive
             />
+            </div>
           ))
         }
       </div>
@@ -71,7 +75,7 @@ const FinishPage = () => {
           <span><h2>Choose one Enemy`s card to add to the collection and click END GAME</h2></span>
         </div>}
       </div>
-      <div className={s.playerOne}>
+      <div className={s.player}>
         {
           Object.values(player2).map((item) => (
             <div

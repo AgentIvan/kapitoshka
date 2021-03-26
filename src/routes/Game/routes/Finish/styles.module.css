@@ -7,12 +7,14 @@
     position: relative;
 }
 
-.playerOne {
+.player {
     display: flex;
     top: 4.3vw;
     left: 5vw;
     width: 90vw;
     height: 20vw;
+    max-width: 1400px;
+    align-self: center;
 }
 
 .title {
@@ -27,4 +29,5 @@
 
 .cardBoard {
     width: 100%;
+    max-width: 320px;
 }
