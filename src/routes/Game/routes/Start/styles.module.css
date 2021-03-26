@@ -34,9 +34,13 @@
 }
 
 .flex {
-    display: grid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* display: grid;
     grid-template-columns: auto auto auto;
-    gap: 40px;
+    gap: 40px; */
 }
 
 .card {
@@ -44,4 +48,5 @@
     height: 380px;
     cursor: pointer;
     min-width: 240px;
+    margin: 10px;
 }

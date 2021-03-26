@@ -9,7 +9,7 @@ import s from './styles.module.css';
 
 const StartPage = () => {
   const firebase = useContext(FireBaseContext);
-  const { pokemons: selectedPokemons, onSelectedPokemons, resetSelectedPokemons } = useContext(PokemonContext);
+  const { player1: selectedPokemons, onSelectedPokemons, clearPokemonContext } = useContext(PokemonContext);
   const [pokemons, setPokemons] = useState({});
 
   // console.log( pokemons);
@@ -18,13 +18,28 @@ const StartPage = () => {
     firebase.getPokemonsSoket((pokemons) => {
       console.log('####: <GamePage />', 'getPokemonsSoket');
       setPokemons(pokemons);
-      resetSelectedPokemons();
+      clearPokemonContext();
     });
     return () => firebase.offPokemonsSoket();
   },[]);
 
   const history = useHistory();
-    
+  
+  const handleNewPokemon = async () => {
+    const boardResponse = await fetch('https://reactmarathon-api.netlify.app/api/create-player');
+    const boardRequest = await boardResponse.json();
+
+    const newPokemon = boardRequest.data[Math.floor(Math.random() * 5)];
+
+    firebase.addPokemon(newPokemon, () => {
+      firebase.getPokemonsSoket((pokemons) => {
+        setPokemons(pokemons);
+      });
+
+      return () => firebase.offPokemonsSoket();
+    });
+  };
+
   const handleClickGoHome = () => {
     console.log('####: <GamePage />', 'GOTO /');
     history.push('/');
@@ -32,7 +47,7 @@ const StartPage = () => {
   
   const handleStartGameClick = () => {
     console.log('####: <GamePage />', 'GOTO game/board');
-      history.push("game/board");
+      history.push("/game/board");
   };
 
   const handleChangeSelected = key => {
@@ -54,6 +69,7 @@ const StartPage = () => {
     <div className={s.root}>
       <div className={s.container}>
         <div className={s.buttons}>
+          <button className={s.button} onClick={handleNewPokemon}>Add New</button>
           <button className={s.button} onClick={handleStartGameClick} disabled={Object.keys(selectedPokemons).length < 5}>
             Go to board
           </button>

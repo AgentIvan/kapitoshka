@@ -1,40 +1,29 @@
 .root {
-    margin: 0 auto;
-}
-.container {
-    width: fit-content;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    left: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    animation: text-fade-in 800ms 600ms forwards;
-}
-
-@keyframes text-fade-in {
-    from {
-        right: 0;
-    }
-    to {
-        opacity: 1;
-        right: 25%;
-    }
-}
-
-.buttons {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-.button {
-    margin: 0 10px;
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(100vw / 1.71);
+    position: relative;
 }
 
-.flex {
+.playerOne {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    top: 4.3vw;
+    left: 5vw;
+    width: 90vw;
+    height: 20vw;
+}
+
+.title {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.selected {
+    margin-top: -20px;
+}
+
+.cardBoard {
+    width: 100%;
 }

@@ -6,9 +6,9 @@
     height: 250px;
 }
 
-.cardBoard:first-child {
+/* .cardBoard:first-child {
     margin-top: 0;
-}
+} */
 
 .cardBoard.selected {
     margin-left: -20px;
