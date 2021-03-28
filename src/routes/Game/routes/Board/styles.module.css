@@ -45,3 +45,27 @@
     width: 18vw;
     height: 50.3vw;
 }
+
+.yourturn {
+    position: absolute;
+    top: 1vw;
+    font-size: 2.6rem;
+}
+.right {
+    right: 12vw;
+    animation: red-color-change 1s infinite;
+}
+@keyframes red-color-change {
+    0% { color: #d998b2; }
+    50% { color: red; }
+    100% { color: #d998b2; }
+}
+.left {
+    left: 12vw;
+    animation: blue-color-change 1s infinite;
+}
+@keyframes blue-color-change {
+    0% { color: #a8caea; }
+    50% { color: blue; }
+    100% { color: #a8caea; }
+}
