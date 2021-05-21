@@ -3,12 +3,12 @@
 }
 .container {
     width: fit-content;
-    position: absolute;
+    /* position: absolute; */
     right: 0;
-    top: 50%;
-    left: 50%;
+    /* top: 50%; */
+    /* left: 50%; */
     opacity: 0;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
     animation: text-fade-in 800ms 600ms forwards;
 }
 
