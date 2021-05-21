@@ -2,11 +2,12 @@ import { PokemonContext } from "../../../../context/pokemonContext";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import PokemonCard from '../../../../components/PokemonCard';
-
-import s from './styles.module.css';
 import PlayerBoard from "./components/PlayerBoard";
 import ArrowChoice from './components/ArrowChoice';
 import Result from './components/Result';
+
+import cn from 'classnames';
+import s from './styles.module.css';
 
 const counterWin = (board, player1, player2) => {
   let count1 = player1.length, count2 = player2.length;
@@ -42,7 +43,7 @@ const BoardPage = () => {
     const [turn, setTurn] = useState(0);
     const [stop, setStop] = useState(false);
     const [result, setResult] = useState(null);
-    
+
   useEffect(async () =>{
     const boardResponce = await fetch('https://reactmarathon-api.netlify.app/api/board');
     const boardRequest = await boardResponce.json();
@@ -116,6 +117,7 @@ const BoardPage = () => {
     <div className={s.root}>
       {result && <Result type={result} />}
       <ArrowChoice side={turn} stop={stop} />
+      {turn && <h1 className={cn(s.yourturn, [null,s.left,s.right][turn])}>You turn</h1>}
       <div className={s.playerOne}>
         <PlayerBoard
           player={1}
